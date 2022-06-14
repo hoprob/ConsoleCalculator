@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\robin\\source\\repos\\Systemtestning\\ConsoleCalculator\\ConsoleCalculator\\ConsoleCalculator.csproj",
+      "projectUniqueName": "C:\\Users\\robin\\source\\repos\\Systemtestning\\ConsoleCalculator\\ConsoleCalculator\\ConsoleCalculator\\ConsoleCalculator.csproj",
       "projectName": "ConsoleCalculator",
-      "projectPath": "C:\\Users\\robin\\source\\repos\\Systemtestning\\ConsoleCalculator\\ConsoleCalculator\\ConsoleCalculator.csproj",
+      "projectPath": "C:\\Users\\robin\\source\\repos\\Systemtestning\\ConsoleCalculator\\ConsoleCalculator\\ConsoleCalculator\\ConsoleCalculator.csproj",
       "packagesPath": "C:\\Users\\robin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\robin\\source\\repos\\Systemtestning\\ConsoleCalculator\\ConsoleCalculator\\obj\\",
+      "outputPath": "C:\\Users\\robin\\source\\repos\\Systemtestning\\ConsoleCalculator\\ConsoleCalculator\\ConsoleCalculator\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

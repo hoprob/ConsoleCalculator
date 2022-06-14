@@ -40,6 +40,30 @@ namespace ConsoleCalculator
                 $"\n\tExample: \"2,5\", \"86\", \"95,7\", \"-63\"\n");
         }
 
+        public Calculation InputCalculation()
+        {
+            Calculation calc = new Calculation();
+            string input = "";
+            string calculation = "";
+            string validNum = "0123456789,";
+            string validOp = "+-*/";
+            do
+            {
+                input = Console.ReadKey().KeyChar.ToString();
+                calculation += input;
+            } while (validNum.Contains(input));
+            string op = calculation.Substring(calculation.Length - 1);
+            if (validOp.Contains(op))
+            {
+                //Gå vidare
+            }
+            else
+            {
+                //Fel operator
+            }
+
+        }
+
         public string InputOperator(string testVal = "")
         {
             string input;
@@ -53,6 +77,21 @@ namespace ConsoleCalculator
             else
                 throw new Exception($"The input {input} is not a valid operator!\n" +
                     $"\tExample: \"+\", \"-\", \"*\", \"/\"\n");
+        }
+        public bool InputQuitQuestion()
+        {
+            while(true)
+            {
+                string input = Console.ReadKey().KeyChar.ToString();
+                if (input == "N" || input == "n")
+                    return false;
+                else if (input == "Y" || input == "y")
+                    return true;
+                else
+                {
+                    Print.Error("You have to enter Y or N !!\n\t");
+                }
+            }
         }
     }
 }

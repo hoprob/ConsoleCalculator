@@ -56,7 +56,7 @@ namespace ConsoleCalculator.Test
             sut.Add(calc1);
             sut.Add(calc2);
             //Act
-            var expected = "1. 2 + 2 = 4\n2. 6 * 6 = 36\n";
+            var expected = "\t1. 2 + 2 = 4\n\t2. 6 * 6 = 36\n";
             var actual = sut.GetLog();
             //Assert
             Assert.Equal(expected, actual);

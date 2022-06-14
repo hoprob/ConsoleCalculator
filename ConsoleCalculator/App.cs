@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace ConsoleCalculator
 {
+    //TODO Add feature to use result to calculation in new caclucation.
+    //TODO Make input number "break"/"return" when user inputs operator.
     public class App
     {
         Input input;
@@ -44,7 +46,9 @@ namespace ConsoleCalculator
                     Log();
                     return;
                 case "3":
-                    isRunning = false; //TODO Ask if user really want to quit!
+                    Print.QuitQuestion();
+                    if (input.InputQuitQuestion())
+                        isRunning = false;
                     return;
                 default:
                     return;

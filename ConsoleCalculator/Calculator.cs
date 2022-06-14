@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleCalculator
 {
-    public class Calculator //TODO Test this !!!!!
+    public class Calculator 
     {
         public double Calculate(double num1, double num2, string inputOperator)
         {

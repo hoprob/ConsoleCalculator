@@ -68,6 +68,7 @@ namespace ConsoleCalculator.Test
         public void Input_Operator_Throws_Exception(string input)
         {
             Assert.Throws<Exception>(() => sut.InputOperator(input));
+
         }
     }
 }

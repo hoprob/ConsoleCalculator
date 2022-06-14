@@ -55,5 +55,10 @@ namespace ConsoleCalculator
         {
             Console.Write("\n\n\tPress ENTER to get back!");
         }
+        public static void QuitQuestion()
+        {
+            Console.Clear();
+            Console.Write("\n\tDo you really want to quit? \n\t\t[Y/N]");
+        }
     }
 }

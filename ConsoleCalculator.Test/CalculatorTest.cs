@@ -1,3 +1,4 @@
+using System;
 using Xunit;
 
 namespace ConsoleCalculator.Test
@@ -81,5 +82,27 @@ namespace ConsoleCalculator.Test
             //Assert
             Assert.Equal(expected, actual);
         }
+        [Theory]
+        [InlineData(2, 6, "+", 8)]
+        [InlineData(-6, -3, "-", -3)]
+        [InlineData(26.65, 62.89, "*", 1676.0185)]
+        [InlineData(4961, 623, "/", 7.96308186)]
+        public void CalculateTest(double num1, double num2, string inputOperator, double expected)
+        {
+            //Act
+            var actual = sut.Calculate(num1, num2, inputOperator);
+            //Assert
+            Assert.Equal(expected, actual);
+        }
+        [Theory]
+        [InlineData(2, 6, "h")]
+        [InlineData(-6, -3, "3")]
+        [InlineData(26.65, 62.89, "-/")]
+        [InlineData(4961, 623, "++")]
+        public void CalculateTest_Not_Valid_Operator_Throws_Exception(double num1, double num2, string inputOperator)
+        {
+            Assert.Throws<Exception>(() => sut.Calculate(num1, num2, inputOperator));
+        }
+  
     }
 }

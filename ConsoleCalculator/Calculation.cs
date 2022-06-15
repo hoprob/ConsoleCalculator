@@ -8,10 +8,14 @@ namespace ConsoleCalculator
 {
     public class Calculation
     {
-        public string calculation { get; set; }
-        public double num1 { get; set; }
-        public double num2 { get; set; }
-        public string inputOperator { get; set; }
-        public double result { get; set; }
+        public double Num1 { get; set; }
+        public double Num2 { get; set; }
+        public string InputOperator { get; set; }
+        public double Result { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Num1} {InputOperator} {Num2} = {Result}";
+        }
     }
 }

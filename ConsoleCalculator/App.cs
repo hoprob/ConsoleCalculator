@@ -63,30 +63,38 @@ namespace ConsoleCalculator
             string inputOperator = "";
             string calculation = "";
             
-            Print.Calculate(calculation);
+            Print.Calculate(calculation, "Enter a number and an operator, Examples: \"22+\", \"-2*\", \"3,5-\", \"9/\"");
             try
             {
-                //Num1
-                Print.FirstNumber();
-                num1 = input.InputDouble();
-                calculation += $"{num1} ";
-                Console.Clear();
-                Print.Calculate(calculation);
-                //Operator
-                Print.GetOperator();
-                inputOperator = input.InputOperator();
-                calculation += $"{inputOperator}";
-                Console.Clear();
-                Print.Calculate(calculation);
-                //Num2
-                Print.SecondNumber();
-                num2 = input.InputDouble();
-                calculation += $" {num2}";
+                ////Num1
+                //Print.FirstNumber();
+                //num1 = input.InputDouble();
+                //calculation += $"{num1} ";
+                //Console.Clear();
+                //Print.Calculate(calculation);
+                ////Operator
+                //Print.GetOperator();
+                //inputOperator = input.InputOperator();
+                //calculation += $"{inputOperator}";
+                //Console.Clear();
+                //Print.Calculate(calculation);
+                ////Num2
+                //Print.SecondNumber();
+                //num2 = input.InputDouble();
+                //calculation += $" {num2}";
                 //Result
-                result = calculator.Calculate(num1, num2, inputOperator);
-                log.Add(new Calculation() { calculation = calculation, result = result });
+                Calculation calc = new Calculation();
+                //input.InputCalculation();
+                while (!input.InputCalculationFirstNumAndOperator(calc)) ;
                 Console.Clear();
-                Print.Calculate(calculation, result);
+                Print.Calculate($"{calc.Num1} {calc.InputOperator}", "Enter a second number and press ENTER, Examples: \"22\", \"-2\", \"3,5\"");
+                while (!input.InputCalculationSecondNum(calc)) ;
+                calc.Result = calculator.Calculate(calc.Num1, calc.Num2, calc.InputOperator);
+                //log.Add(new Calculation() { calculation = calculation, result = result });
+                log.Add(calc);
+                Console.Clear();
+                //Print.Calculate(calculation, result);
+                Print.Calculate(calc.ToString(), "");
                 GetBack();
             }
             catch(Exception e)

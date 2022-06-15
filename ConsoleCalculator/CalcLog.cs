@@ -39,11 +39,11 @@ namespace ConsoleCalculator
         }
         public void AddMockCalculations()
         {
-            log.Add(new Calculation() { calculation = "2 + 2", result = 4 });
-            log.Add(new Calculation() { calculation = "8 - 4", result = 4 });
-            log.Add(new Calculation() { calculation = "2 * 2", result = 4 });
-            log.Add(new Calculation() { calculation = "8 / 2", result = 4 });
-            log.Add(new Calculation() { calculation = "20 + 5", result = 25 });
+            log.Add(new Calculation() { Num1 = 2, Num2 = 2,InputOperator = "+", Result = 4 });
+            log.Add(new Calculation() { Num1 = 8, InputOperator = "-", Num2 = 4, Result = 4 });
+            log.Add(new Calculation() { Num1 = 2, InputOperator = "*", Num2 = 2, Result = 4 });
+            log.Add(new Calculation() { Num1 = 8, InputOperator = "/", Num2 = 2, Result = 4 });
+            log.Add(new Calculation() { Num1 = 20, InputOperator = "+", Num2 = 5, Result = 25 });
         }
         public void Clear()
         {
@@ -54,7 +54,7 @@ namespace ConsoleCalculator
             string output = "";
             for (int i = 0; i < log.Count; i++)
             {
-                output += $"\t{i + 1}. {log[i].calculation} = {log[i].result}\n";
+                output += $"\t{i + 1}. {log[i].ToString()}\n";
             }
             return output;
         }

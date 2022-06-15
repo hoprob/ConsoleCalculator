@@ -16,8 +16,10 @@ namespace ConsoleCalculator.Test
             //Arrange
             Calculation calc = new Calculation
             {
-                calculation = "2 + 2",
-                result = 4
+                Num1 = 2,
+                Num2 = 2,
+                InputOperator = "+",
+                Result = 4
             };
             //Act
             var actual = sut.Add(calc);
@@ -30,8 +32,10 @@ namespace ConsoleCalculator.Test
             //Arrange
             Calculation calc = new Calculation
             {
-                calculation = "2 + 2",
-                result = 4
+                Num1 = 2,
+                Num2 = 2,
+                InputOperator = "+",
+                Result = 4
             };
             //Act
             var initialCount = sut.Count;
@@ -45,13 +49,17 @@ namespace ConsoleCalculator.Test
             //Assert
             Calculation calc1 = new Calculation
             {
-                calculation = "2 + 2",
-                result = 4
+                Num1 = 2,
+                Num2 = 2,
+                InputOperator = "+",
+                Result = 4
             };
             Calculation calc2 = new Calculation
             {
-                calculation = "6 * 6",
-                result = 36
+                Num1 = 6,
+                Num2 = 6,
+                InputOperator = "*",
+                Result = 36
             };
             sut.Add(calc1);
             sut.Add(calc2);

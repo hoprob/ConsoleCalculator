@@ -31,37 +31,81 @@ namespace ConsoleCalculator
         {
             double num;
             string input;
+            
             if (testVal != "")
                 input = testVal;
             else
+            {
+                ClearInputCalculatorRow();
+                Console.SetCursorPosition(9, 5);
                 input = Console.ReadLine();
+            }
             return Double.TryParse(input, out num) ? num :
                 throw new Exception($"The input {input} is not a number!\n" +
                 $"\n\tExample: \"2,5\", \"86\", \"95,7\", \"-63\"\n");
         }
-
-        public Calculation InputCalculation()
+        public bool InputCalculationFirstNumAndOperator(Calculation calc) //TODO Test this?
         {
-            Calculation calc = new Calculation();
-            string input = "";
+            string input;
             string calculation = "";
             string validNum = "0123456789,";
             string validOp = "+-*/";
+            double num1;
+            ClearInputCalculatorRow();
+            Console.SetCursorPosition(9, 5);
+            //Get first number and break when entering an operator
             do
             {
                 input = Console.ReadKey().KeyChar.ToString();
                 calculation += input;
-            } while (validNum.Contains(input));
+            } while (validNum.Contains(input) || (calculation.Length == 1 && input == "-"));
             string op = calculation.Substring(calculation.Length - 1);
-            if (validOp.Contains(op))
+            //Check that first number is parseable to double
+            if (Double.TryParse(calculation.Substring(0, calculation.IndexOf(op)), out num1))
             {
-                //Gå vidare
+                calc.Num1 = num1;
             }
             else
             {
-                //Fel operator
+                //Error message, not a double
+                Print.Error($"The input {calculation.Substring(0, calculation.IndexOf(op))} is not a number!\n" +
+                $"\n\tExample: \"2,5\", \"86\", \"95,7\", \"-63\"\n");
+                return false;
             }
+            //Check that operator is valid
+            if (validOp.Contains(op))
+            {
+                //Gå vidare
+                calc.InputOperator = op;
 
+            }
+            else
+            {
+                Print.Error($"The input {op} is not a valid operator!\n" +
+                    $"\tExample: \"+\", \"-\", \"*\", \"/\"\n");
+                return false;
+            }
+            return true;
+        }
+        public bool InputCalculationSecondNum(Calculation calc)
+        {
+            try
+            {
+                calc.Num2 = InputDouble();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Print.Error(e.Message);
+                return false;
+            }
+        }
+        public Calculation InputCalculation()
+        {
+            Calculation calc = new Calculation();
+            while(!InputCalculationFirstNumAndOperator(calc));   
+            calc.Num2 = InputDouble();
+            return calc;
         }
 
         public string InputOperator(string testVal = "")
@@ -92,6 +136,11 @@ namespace ConsoleCalculator
                     Print.Error("You have to enter Y or N !!\n\t");
                 }
             }
+        }
+        public void ClearInputCalculatorRow()
+        {
+            Console.SetCursorPosition(0, 5);
+            Console.Write("                                                                                               ");
         }
     }
 }

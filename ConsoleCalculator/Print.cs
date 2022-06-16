@@ -19,12 +19,14 @@ namespace ConsoleCalculator
         public static void Calculate(string calculation, double result)
         {
             Console.Write("\t** Calculate **\n\n");
-            Console.Write($"\t{calculation} = {result}");
+            Console.Write($"\t{calculation} = {result}\n\t");
         }
-        public static void Calculate(string calculation)
+        public static void Calculate(string calculation, string instructions)
         {
             Console.Write("\t** Calculate **\n\n");
             Console.Write($"\t{calculation}\n");
+            Console.SetCursorPosition(8, 8);
+            Console.Write(instructions);
         }
         public static void Log(CalcLog log)
         {
@@ -44,7 +46,10 @@ namespace ConsoleCalculator
         }
         public static void Error(string exception)
         {
-            Console.Write($"\n\tERROR! {exception}");
+            Console.SetCursorPosition(5, 15);
+            Console.Write($"\n\tERROR! {exception}                                                                         \n" +
+                $"                                                                                                           ");
+            Console.SetCursorPosition(0, 0);
         }
 
         public static void GetOperator()
@@ -58,7 +63,7 @@ namespace ConsoleCalculator
         public static void QuitQuestion()
         {
             Console.Clear();
-            Console.Write("\n\tDo you really want to quit? \n\t\t[Y/N]");
+            Console.Write("\n\tDo you really want to quit? \n\n\t\t[Y/N]");
         }
     }
 }

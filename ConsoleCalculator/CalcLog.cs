@@ -58,6 +58,10 @@ namespace ConsoleCalculator
             }
             return output;
         }
+        public Calculation GetCalculation(int index)
+        {
+            return log[index];
+        }
         public IEnumerator GetEnumerator()
         {
             throw new NotImplementedException();

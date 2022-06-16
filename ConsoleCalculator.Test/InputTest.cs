@@ -70,5 +70,34 @@ namespace ConsoleCalculator.Test
             Assert.Throws<Exception>(() => sut.InputOperator(input));
 
         }
+        [Theory]
+        [InlineData("22+")]
+        [InlineData("-85-")]
+        [InlineData("5,38*")]
+        [InlineData("9256,56/")]
+        public void InputCalculation_Returns_True(string testVal)
+        {
+            //Arrange
+            Calculation calc = new Calculation();
+            //Act
+            var actual = sut.InputCalculationFirstNumAndOperator(calc, testVal);
+            //Assert
+            Assert.True(actual);
+        }
+
+        [Theory]
+        [InlineData("22&")]
+        [InlineData("-Ö85-")]
+        [InlineData("5.38*")]
+        [InlineData(",9256,56/")]
+        public void InputCalculation_Returns_False(string testVal)
+        {
+            //Arrange
+            Calculation calc = new Calculation();
+            //Act
+            var actual = sut.InputCalculationFirstNumAndOperator(calc, testVal);
+            //Assert
+            Assert.False(actual);
+        }
     }
 }

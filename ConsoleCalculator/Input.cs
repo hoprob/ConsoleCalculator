@@ -8,12 +8,12 @@ namespace ConsoleCalculator
 {
     public class Input
     {
-        public string InputMenu(int max, string testval = "")
+        public string InputMenu(int max, string testVal = "")
         {
             int num;
             string input;
-            if(testval != "")
-                input = testval;
+            if(testVal != "")
+                input = testVal;
             else
                 input = Console.ReadKey().KeyChar.ToString();
             if (Int32.TryParse(input, out num))
@@ -30,8 +30,7 @@ namespace ConsoleCalculator
         public double InputDouble(string testVal = "")
         {
             double num;
-            string input;
-            
+            string? input;     
             if (testVal != "")
                 input = testVal;
             else
@@ -44,45 +43,52 @@ namespace ConsoleCalculator
                 throw new Exception($"The input {input} is not a number!\n" +
                 $"\n\tExample: \"2,5\", \"86\", \"95,7\", \"-63\"\n");
         }
-        public bool InputCalculationFirstNumAndOperator(Calculation calc) //TODO Test this?
+        public bool InputCalculationFirstNumAndOperator(Calculation calc, string testVal = "")
         {
             string input;
             string calculation = "";
             string validNum = "0123456789,";
             string validOp = "+-*/";
             double num1;
-            ClearInputCalculatorRow();
-            Console.SetCursorPosition(9, 5);
-            //Get first number and break when entering an operator
-            do
+            bool testBool = false;
+            //Checks if there's a test value
+            if(testVal != "")
             {
-                input = Console.ReadKey().KeyChar.ToString();
-                calculation += input;
-            } while (validNum.Contains(input) || (calculation.Length == 1 && input == "-"));
-            string op = calculation.Substring(calculation.Length - 1);
-            //Check that first number is parseable to double
-            if (Double.TryParse(calculation.Substring(0, calculation.IndexOf(op)), out num1))
-            {
-                calc.Num1 = num1;
+                calculation = testVal;
+                testBool = true;
             }
             else
             {
-                //Error message, not a double
-                Print.Error($"The input {calculation.Substring(0, calculation.IndexOf(op))} is not a number!\n" +
-                $"\n\tExample: \"2,5\", \"86\", \"95,7\", \"-63\"\n");
+                //Get first number and break when entering an operator
+                ClearInputCalculatorRow();
+                Console.SetCursorPosition(9, 5);
+                do
+                {
+                    input = Console.ReadKey().KeyChar.ToString();
+                    calculation += input;
+                } while (validNum.Contains(input) || (calculation.Length == 1 && input == "-"));
+            }
+            //Gets the operator and removes it from string
+            string op = calculation.Substring(calculation.Length - 1, 1);
+            calculation = calculation.Remove(calculation.Length - 1);
+            //Check that first number is parseable to double
+            if (Double.TryParse(calculation, out num1))
+                calc.Num1 = num1;
+            else
+            {
+                if(!testBool)
+                    Print.Error($"The input {calculation} is not a number!\n" +
+                        $"\n\tExample: \"2,5\", \"86\", \"95,7\", \"-63\"\n");
                 return false;
             }
             //Check that operator is valid
             if (validOp.Contains(op))
-            {
-                //Gå vidare
                 calc.InputOperator = op;
-
-            }
             else
             {
-                Print.Error($"The input {op} is not a valid operator!\n" +
-                    $"\tExample: \"+\", \"-\", \"*\", \"/\"\n");
+                if(!testBool)
+                    Print.Error($"The input {op} is not a valid operator!\n" +
+                        $"\tExample: \"+\", \"-\", \"*\", \"/\"\n");
                 return false;
             }
             return true;
@@ -100,14 +106,6 @@ namespace ConsoleCalculator
                 return false;
             }
         }
-        public Calculation InputCalculation()
-        {
-            Calculation calc = new Calculation();
-            while(!InputCalculationFirstNumAndOperator(calc));   
-            calc.Num2 = InputDouble();
-            return calc;
-        }
-
         public string InputOperator(string testVal = "")
         {
             string input;
@@ -115,7 +113,14 @@ namespace ConsoleCalculator
             if (testVal != "")
                 input = testVal;
             else
-                input = Console.ReadKey().KeyChar.ToString();
+            {
+                ClearInputCalculatorRow();
+                Console.SetCursorPosition(9, 5);
+                char inputChar = Console.ReadKey().KeyChar;
+                if (inputChar == '\r')
+                    return "";
+                input = inputChar.ToString();
+            }
             if (input.Length == 1 && operators.Contains(input))
                 return input;
             else

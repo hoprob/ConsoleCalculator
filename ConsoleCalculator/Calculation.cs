@@ -13,6 +13,16 @@ namespace ConsoleCalculator
         public string InputOperator { get; set; }
         public double Result { get; set; }
 
+        public Calculation()
+        {
+            this.InputOperator = "No Operator Assigned";
+        }
+        public Calculation(double num1, double num2, string inputOperator)
+        {
+            this.Num1 = num1;
+            this.Num2 = num2;
+            this.InputOperator = inputOperator;
+        }
         public override string ToString()
         {
             return $"{Num1} {InputOperator} {Num2} = {Result}";

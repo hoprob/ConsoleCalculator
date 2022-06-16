@@ -63,7 +63,7 @@ namespace ConsoleCalculator
         public static void QuitQuestion()
         {
             Console.Clear();
-            Console.Write("\n\tDo you really want to quit? \n\t\t[Y/N]");
+            Console.Write("\n\tDo you really want to quit? \n\n\t\t[Y/N]");
         }
     }
 }

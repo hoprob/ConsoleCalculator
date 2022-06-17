@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace ConsoleCalculator
 {
-    //TODO Add feature to use result to calculation in new caclucation.
     public class App
     {
         Input input;

@@ -47,6 +47,9 @@ namespace ConsoleCalculator
         public static void Error(string exception)
         {
             Console.SetCursorPosition(5, 15);
+            Console.Write("\n\t                                                                                               " +
+                          "\t                                                                                                 ");
+            Console.SetCursorPosition(5, 15);
             Console.Write($"\n\tERROR! {exception}                                                                         \n" +
                 $"                                                                                                           ");
             Console.SetCursorPosition(0, 0);
